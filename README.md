@@ -1,4 +1,4 @@
-# YBGITA-Segmentation
+# YBIGTA-Segmentation
 This Repository includes paper reviews and code snippets for image segmentation. <br/><br/>
 <img src = "https://user-images.githubusercontent.com/75057952/157037611-c596647a-85d4-42f6-a218-bb4ed2dc2e99.png" width = "300dp"></img> <br/>
 
