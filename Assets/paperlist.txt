@@ -1,0 +1,17 @@
+FCN		
+DeepLab v3		
+PSPNet		
+EncNet		
+U-Net		
+DeconvNet		
+SegNet		
+MultiResUNet		
+V-Net		
+DETR		
+Max-DeepLab		
+TransFuse		
+CoTr		
+U-Net Transformer		
+UNETR		
+Swin-Unet		
+TransUNet	
