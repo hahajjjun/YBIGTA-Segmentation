@@ -3,16 +3,17 @@
 
 ### Related Works :  [OverFeat](https://arxiv.org/abs/1312.6229)
 - Shift-and-stitch trick yields dense predictions from coarse outputs without interpolation.
-
+<p align = "center">
 <img src = "https://user-images.githubusercontent.com/75057952/156198966-b352a7f3-27c4-4a10-9c74-5484d3c60f61.png" width = "500dp"></img>
-
+</p>
 <div align="center">Fig 1. Shift-and-strich trick is sort of smoothing technique, which obtains <br/>output map with perturbations caused by slight offsets.</div>
 
 - What does 'coarse output' mean?
     - Coarse output is generally low in resolution and small in size.
     - Thus fine-grained and dense outputs are generally required, forcing coarse outputs to be high in resolution.
-    
+<p align = "center">    
 <img src = "https://user-images.githubusercontent.com/75057952/156199003-e1ba5a28-fc95-4ba5-85fb-be476e8b8e75.png" width = "500dp"></img>
+</p>
 <div align="center">Fig 2. Expected result is fine-grained and dense, while output is coarse.</div>
 
 ### Contributions
@@ -23,7 +24,10 @@
 
 ### Architecture
 1. Dense FC layer to 1X1 convolution for classification net
-<img src = "https://user-images.githubusercontent.com/75057952/156199028-d214669a-dbeb-4e30-bc07-f138ffca351e.png" width = "500dp"></img>
+
+<p align = "center">
+<img src = "https://user-images.githubusercontent.com/75057952/156199028-d214669a-dbeb-4e30-bc07-f138ffca351e.png" width = "500dp">
+</p>
 <div align = "center">Fig 3. 1X1 convnet</div>
 - Convolution layers are working as FC layers.
 - Not only 1X1 convolutions, convolutions can replace arbitrary dimension of FC layers.
@@ -33,7 +37,9 @@
 - Since output heatmap has low resolution, upsampling is required.
 - Upsampling & output of downsampling layer are applied together.
 - We call it skip FCNs architecture. <br/>
+<p align = "center">
 <img src = "https://user-images.githubusercontent.com/75057952/156199067-4224f500-f822-4ec6-9c20-62b2b0714e77.png" width = "800dp"></img>
+</p>
 <div align = "center">Fig 4. Skip FCNs</div>
 
 ```python
@@ -43,7 +49,9 @@ FCN-16s = Upsample(FCN-32s) + pool4.output()
 FCN-8s = Upsample(FCN-16s) + pool3.output()
 ```
 - Summation of upsampled output and previous downsampled output aids dense prediction. <br/>
+<p align = "center">
 <img src = "https://user-images.githubusercontent.com/75057952/156199084-d9b053e4-a468-487a-8e99-6fff0681a44e.png" width = "400dp"></img>
+</p>
 <div align = "center">Fig 5. Skip FCNs output</div>
 - Direct summation of downsampled feature maps enhances segmentation performance.
 - FCN-8s shows most dense prediction.
