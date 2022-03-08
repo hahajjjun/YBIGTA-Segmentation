@@ -13,14 +13,14 @@
 Four types of FCN that takes advantage of contextual information
 
 1. Image Pyramid
-  - Apply the same model to multi-scale inputs
+    - Apply the same model to multi-scale inputs
 
 2. Encoder Decoder
-  - Encoder: Reduce spatial dimension -> capture longer range information
-  - Decoder: Employ deconvolution, reuse the pooling indices, etc. -> Recover object details and spatial information
+    - Encoder: Reduce spatial dimension -> capture longer range information
+    - Decoder: Employ deconvolution, reuse the pooling indices, etc. -> Recover object details and spatial information
 
 3. Context Module
-  - Lays out extra modules in cascade* to encode long range context
+    - Lays out extra modules in cascade* to encode long range context
 
 *cascade*: use the same architecture with increasing IoU thresholds. (https://www.youtube.com/watch?v=1_-HfZcERJk)
 <p align="center">
@@ -29,8 +29,8 @@ Four types of FCN that takes advantage of contextual information
 <div align="center">Fig 1. Cascaded CNN architecture</div>
 
 4. Spatial Pyramid Pooling
-  - Uses spatial pyramid pooling
-  - **DeepLabv2 uses atrous spatial pyramid pooling**
+    - Uses spatial pyramid pooling
+    - **DeepLabv2 uses atrous spatial pyramid pooling**
 
 *Spatial pyramid pooling*: Divide the feature maps into layers and apply max pooling seperately, finally connecting them into a single vector
 <p align="center">
