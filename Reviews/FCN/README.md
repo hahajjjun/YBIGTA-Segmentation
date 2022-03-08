@@ -29,6 +29,7 @@
 <img src = "https://user-images.githubusercontent.com/75057952/156199028-d214669a-dbeb-4e30-bc07-f138ffca351e.png" width = "500dp">
 </p>
 <div align = "center">Fig 3. 1X1 convnet</div>
+
 - Convolution layers are working as FC layers.
 - Not only 1X1 convolutions, convolutions can replace arbitrary dimension of FC layers.
 - FC layer output is probability distribution, while 1X1 conv layer output is heatmap.
@@ -71,3 +72,8 @@ FCN-8s = Upsample(FCN-16s) + pool3.output()
 - Patchwise training means 'loss sampling', just like stochastic optimization.
 - By using ConvNet, created patches(same size with receptive field) significantly overlap, enables efficient computation.
 - Sampling in patchwise training can also correct class imbalance problem.
+
+### Discussions
+1. How 1X1 Convolution benefits ConvNet? Parameter Reduction!
+2. FCN Skip Connection is an architecture for exploiting contour information of downsampling features, in order to deal with loss of spatial info. & coarse mapping.
+3. Spatial information loss matters a lot in segmentation task!
