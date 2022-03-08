@@ -26,7 +26,7 @@ Context Module
 
 *cascade*: use the same architecture with increasing IoU thresholds. (https://www.youtube.com/watch?v=1_-HfZcERJk)
 
-<img align = "center" src = "http://www.svcl.ucsd.edu/projects/cascade-rcnn/img/faster2cascade.png" width = "500dp"></img>
+<img align = "middle" src = "http://www.svcl.ucsd.edu/projects/cascade-rcnn/img/faster2cascade.png" width = "500dp"></img>
 <div align="center">Fig 1. Cascaded CNN architecture</div>
 
 Spatial Pyramid Pooling
