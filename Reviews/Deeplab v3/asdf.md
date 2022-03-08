@@ -4,15 +4,26 @@
 
 1. Reduced feature resolution makes dense prediction tasks difficult
 
-- Detailed spatial information is desired
+  - Detailed spatial information is desired
 
 2. Objects are scaled differently (small to big)
 
 ## Previous approches
 
-Scale
+Four types of FCN that takes advantage of contextual information
 
-- Image Pyramid
---  test
+Image Pyramid
+  - Apply the same model to multi-scale inputs
+Encoder Decoder
+  - Encoder: Reduce spatial dimension -> capture longer range information
+  - Decoder: Employ deconvolution, reuse the pooling indices, etc. -> Recover object details and spatial information
+Context Module
+  - Lays out extra modules in cascade* to encode long range context
+
+*cascade*: use the same architecture with increasing IoU thresholds. (https://www.youtube.com/watch?v=1_-HfZcERJk)
+
+Spatial Pyramid Pooling
+  - Uses spatial pyramid pooling
+  - 
 
 ## Solutions
