@@ -25,9 +25,8 @@ Context Module
   - Lays out extra modules in cascade* to encode long range context
 
 *cascade*: use the same architecture with increasing IoU thresholds. (https://www.youtube.com/watch?v=1_-HfZcERJk)
-<p align = "center">
-<img src = "https://www.google.com/url?sa=i&url=http%3A%2F%2Fwww.svcl.ucsd.edu%2Fprojects%2Fcascade-rcnn%2F&psig=AOvVaw1loxOlenpqe3MEQ49FN-eM&ust=1646817888113000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLCysfCYtvYCFQAAAAAdAAAAABAD" width = "500dp"></img>
-</p>
+
+<img align = "center" src = "http://www.svcl.ucsd.edu/projects/cascade-rcnn/img/faster2cascade.png" width = "500dp"></img>
 <div align="center">Fig 1. Cascaded CNN architecture</div>
 
 Spatial Pyramid Pooling
