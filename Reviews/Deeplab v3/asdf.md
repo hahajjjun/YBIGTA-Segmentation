@@ -39,3 +39,6 @@ Four types of FCN that takes advantage of contextual information
 <div align="center">Fig 2. Spatial Pyramid Pooling</div>
 
 ## Solutions
+
+Extract denser features without learning extra parameters
+
