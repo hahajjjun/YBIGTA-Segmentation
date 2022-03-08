@@ -1,5 +1,9 @@
 # Rethinking Atrous Convolution for Semantic Image Segmentation
 
+How does semantic segmentation differ from image classification / detection?
+
+-> Whereas image classification / detection tasks prioritize global context, segmentation heavily relies on details and spatial information due to its pixel-scale classification
+
 ## Problems
 
 1. Reduced feature resolution makes dense prediction tasks difficult
@@ -38,7 +42,30 @@ Four types of FCN that takes advantage of contextual information
 </p>
 <div align="center">Fig 2. Spatial Pyramid Pooling</div>
 
-## Solutions
 
-Extract denser features without learning extra parameters
 
+## DeepLab v3
+
+Use atrous convolution to enlarge receptive field
+
+Bilinear interpolation to recover spatial information
+
+Keep the ground truths intact and upsample the final logits
+
+<p align="center">
+<img src = "https://gaussian37.github.io/assets/img/vision/segmentation/aspp/5.png" width = "500dp"></img>
+</p>
+<div align="center">Fig 3. Standard convolution (above) vs. Atrous convolution</div>
+
+Whereas in standard convolution, which results in greater output stride, atrous convolution can maintain output stride without increasing conputations.
+
+*output stride* The ratio of input resolution to output resolution.
+
+<p align="center">
+<img src = "https://gaussian37.github.io/assets/img/vision/segmentation/aspp/6.png" width = "500dp"></img>
+</p>
+<div align="center">Fig 4. Atrous spatial pyramid pooling (ASPP)</div>
+
+  - 1x1 convolution for conserving context
+  - Parallel pooling with different rates
+  - Batch normalization for each convolution layer
