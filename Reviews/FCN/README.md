@@ -53,6 +53,7 @@ FCN-8s = Upsample(FCN-16s) + pool3.output()
 <img src = "https://user-images.githubusercontent.com/75057952/156199084-d9b053e4-a468-487a-8e99-6fff0681a44e.png" width = "400dp"></img>
 </p>
 <div align = "center">Fig 5. Skip FCNs output</div>
+
 - Direct summation of downsampled feature maps enhances segmentation performance.
 - FCN-8s shows most dense prediction.
 
