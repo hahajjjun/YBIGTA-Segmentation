@@ -59,7 +59,7 @@ Keep the ground truths intact and upsample the final logits
 
 Whereas in standard convolution, which results in greater output stride, atrous convolution can maintain output stride without increasing conputations.
 
-*output stride* The ratio of input resolution to output resolution.
+*output stride*: The ratio of input resolution to output resolution.
 
 <p align="center">
 <img src = "https://gaussian37.github.io/assets/img/vision/segmentation/aspp/6.png" width = "500dp"></img>
