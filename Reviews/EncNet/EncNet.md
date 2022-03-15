@@ -4,6 +4,7 @@ Can we leverage the context encoding of classic approaches with the power of dee
 
 ## Previous approaches
 
+<img src="https://i2.wp.com/zhangbin0917.github.io/2018/06/11/Context-Encoding-for-Semantic-Segmentation/08.png"></img>
 - Deeplabv3: Atrous Spatial Pyramid Pooling
 
 - PSPNet: Spatial Pyramid Pooling during upsampling
