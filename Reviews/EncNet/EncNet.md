@@ -33,7 +33,7 @@ Can we leverage the context encoding of classic approaches with the power of dee
 - A pre-trained ResNet is used to extract dense convolutional feature maps
 - Context Encoding Module is built on top to capture encoded semantics and capture **scaling factors**
 
-`
+```python
 class EncNet(BaseNet):
     def __init__(self, nclass, backbone, aux=True, se_loss=True, lateral=False,
                  norm_layer=SyncBatchNorm, **kwargs):
@@ -45,7 +45,7 @@ class EncNet(BaseNet):
         if aux:
             self.auxlayer = FCNHead(1024, nclass, norm_layer=norm_layer)
             
-`
+```
 ## Problem
 
 FCN finds difficulty in capturing the context of the image
