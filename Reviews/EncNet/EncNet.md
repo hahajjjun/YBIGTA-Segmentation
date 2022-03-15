@@ -72,7 +72,7 @@ class EncNet(BaseNet):
             c2 = self.pretrained.layer2(c1)
             c3 = self.pretrained.layer3(c2)
             c4 = self.pretrained.layer4(c3)
-        return c1, c2, c3, c4
+        return c1, c2, c3, c4 # fully connected 는 사용하지 않는 모습
         
         self.layer1 = self._make_layer(block, 64, layers[0], norm_layer=norm_layer, is_first=False)
         self.layer2 = self._make_layer(block, 128, layers[1], stride=2, norm_layer=norm_layer)
@@ -88,12 +88,57 @@ class EncNet(BaseNet):
         '''
 
         x = list(self.head(*features))
+        
+        '''
+        class EncHead(nn.Module):
+            def __init__(self, in_channels, out_channels, se_loss=True, lateral=True,
+                         norm_layer=None, up_kwargs=None):
+                super(EncHead, self).__init__()
+                self.se_loss = se_loss
+                self.lateral = lateral
+                self.up_kwargs = up_kwargs
+                self.conv5 = nn.Sequential(
+                    nn.Conv2d(in_channels, 512, 3, padding=1, bias=False),
+                    norm_layer(512),
+                    nn.ReLU(inplace=True))
+                if lateral:
+                    self.connect = nn.ModuleList([
+                        nn.Sequential(
+                            nn.Conv2d(512, 512, kernel_size=1, bias=False),
+                            norm_layer(512),
+                            nn.ReLU(inplace=True)),
+                        nn.Sequential(
+                            nn.Conv2d(1024, 512, kernel_size=1, bias=False),
+                            norm_layer(512),
+                            nn.ReLU(inplace=True)),
+                    ])
+                    self.fusion = nn.Sequential(
+                            nn.Conv2d(3*512, 512, kernel_size=3, padding=1, bias=False),
+                            norm_layer(512),
+                            nn.ReLU(inplace=True))
+                self.encmodule = EncModule(512, out_channels, ncodes=32,
+                    se_loss=se_loss, norm_layer=norm_layer)
+                self.conv6 = nn.Sequential(nn.Dropout(0.1, False),
+                                           nn.Conv2d(512, out_channels, 1))
+            def forward(self, *inputs):
+                feat = self.conv5(inputs[-1])
+                if self.lateral:
+                    c2 = self.connect[0](inputs[1])
+                    c3 = self.connect[1](inputs[2])
+                    feat = self.fusion(torch.cat([feat, c2, c3], 1))
+                outs = list(self.encmodule(feat))
+                outs[0] = self.conv6(outs[0])
+                return tuple(outs)
+        '''
+        
         x[0] = F.interpolate(x[0], imsize, **self._up_kwargs)
         if self.aux:
             auxout = self.auxlayer(features[2])
             auxout = F.interpolate(auxout, imsize, **self._up_kwargs)
             x.append(auxout)
         return tuple(x)
+        
+        
             
 ```
 ## Problem
