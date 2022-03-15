@@ -4,6 +4,8 @@ Given the image of a room, it is unlikely that we will find the presence of vehi
 
 Can we leverage the context encoding of classic approaches with the power of deep learning?
 
+Bag of words: https://en.wikipedia.org/wiki/Bag-of-words_model_in_computer_vision
+
 ## Previous approaches
 
 <p align=center>
