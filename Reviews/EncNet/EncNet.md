@@ -6,8 +6,8 @@ Can we leverage the context encoding of classic approaches with the power of dee
 
 <p align=center>
 <img src="https://i2.wp.com/zhangbin0917.github.io/2018/06/11/Context-Encoding-for-Semantic-Segmentation/08.png", width=600dpi></img>
-Fig 1. Misclassification of FCN due to lack of global context
 </p>
+<p align=center>Fig 1. Misclassification of FCN due to lack of global context</p>
 
 - Deeplabv3: Atrous Spatial Pyramid Pooling
 
