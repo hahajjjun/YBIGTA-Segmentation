@@ -62,7 +62,7 @@ class EncNet(BaseNet):
         imsize = x.size()[2:]
         features = self.base_forward(x) # 먼저 Resnet50에 한바퀴 돌림
         
-        '''
+        -------------------------------------
         def base_forward(self, x):
             x = self.pretrained.conv1(x)
             x = self.pretrained.bn1(x)
@@ -85,11 +85,11 @@ class EncNet(BaseNet):
                                            dropblock_prob=dropblock_prob)
                                            
         self.fc = nn.Linear(512 * block.expansion, num_classes), block.expansion = 4 # bottleneck
-        '''
+        -------------------------------------
 
         x = list(self.head(*features))
         
-        '''
+        -------------------------------------
         class EncHead(nn.Module):
             def __init__(self, in_channels, out_channels, se_loss=True, lateral=True,
                          norm_layer=None, up_kwargs=None):
@@ -129,9 +129,9 @@ class EncNet(BaseNet):
                 outs = list(self.encmodule(feat))
                 outs[0] = self.conv6(outs[0])
                 return tuple(outs)
-        '''
+        -------------------------------------
         
-        x[0] = F.interpolate(x[0], imsize, **self._up_kwargs)
+        x[0] = F.interpolate(x[0], imsize, **self._up_kwargs) # Down/up samples the input to either the given size or the given scale_factor
         if self.aux:
             auxout = self.auxlayer(features[2])
             auxout = F.interpolate(auxout, imsize, **self._up_kwargs)
