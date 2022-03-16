@@ -76,20 +76,28 @@ class EncNet(BaseNet):
             c4 = self.pretrained.layer4(c3)
         return c1, c2, c3, c4 # fully connected 는 사용하지 않는 모습
         
-        self.layer1 = self._make_layer(block, 64, layers[0], norm_layer=norm_layer, is_first=False)
-        self.layer2 = self._make_layer(block, 128, layers[1], stride=2, norm_layer=norm_layer)
-        if dilated or dilation == 4: # dialated = True
-            self.layer3 = self._make_layer(block, 256, layers[2], stride=1,
-                                           dilation=2, norm_layer=norm_layer,
-                                           dropblock_prob=dropblock_prob)
-            self.layer4 = self._make_layer(block, 512, layers[3], stride=1,
-                                           dilation=4, norm_layer=norm_layer,
-                                           dropblock_prob=dropblock_prob)
-                                           
-        self.fc = nn.Linear(512 * block.expansion, num_classes), block.expansion = 4 # bottleneck
+        class ResNet(nn.Module):
+        
+            """
+            Reference:
+            - He, Kaiming, et al. "Deep residual learning for image recognition." Proceedings of the IEEE conference on computer vision and pattern recognition. 2016.
+            - Yu, Fisher, and Vladlen Koltun. "Multi-scale context aggregation by dilated convolutions."
+            """
+            
+            def __init__(self, block, ...,):
+                self.layer1 = self._make_layer(block, 64, layers[0], norm_layer=norm_layer, is_first=False)
+                self.layer2 = self._make_layer(block, 128, layers[1], stride=2, norm_layer=norm_layer)
+                if dilated or dilation == 4: # dialated = True
+                    self.layer3 = self._make_layer(block, 256, layers[2], stride=1,
+                                                   dilation=2, norm_layer=norm_layer,
+                                                   dropblock_prob=dropblock_prob)
+                    self.layer4 = self._make_layer(block, 512, layers[3], stride=1,
+                                                   dilation=4, norm_layer=norm_layer,
+                                                   dropblock_prob=dropblock_prob)
+
         -------------------------------------
 
-        x = list(self.head(*features))
+        x = list(self.head(*features)) # 각각 64
         
         -------------------------------------
         class EncHead(nn.Module):
