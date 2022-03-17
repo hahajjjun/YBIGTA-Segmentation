@@ -36,7 +36,7 @@ Bag of words: https://en.wikipedia.org/wiki/Bag-of-words_model_in_computer_visio
 
 Use global average pooling to **squeeze** the feature map into channel descriptor. Then, calculate channel-wize dependencies to **excite** back.
 
-In EncNet, $`a^2+b^2=c^2`$
+In EncNet, <img src="https://render.githubusercontent.com/render/math?math={\displaystyle\sum_{d=0}^{d_{max}}}">
 
 - SIFT 
 
