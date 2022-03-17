@@ -34,64 +34,8 @@ Can we leverage the context encoding of classic approaches with the power of dee
 
 Use global average pooling to **squeeze** the feature map into channel descriptor. Then, calculate channel-wize dependencies to **excite** back.
 
-In EncNet, the encoding layer is responsible for squeezing, which squeezes [512, 42, 63] feature label into [1, 512] fc connected layer. The encoding follows these steps:
+In EncNet, the encoding layer is responsible for squeezing, which squeezes [512, 42, 63] feature label into [1, 512] fc connected layer. The encoding architecture is explained under **structure**
 
-#### 1. BxDxHxW => Bx(HW)xD
-    
-Flatten the 2D image to 1D. 
-
-```python
-X = en.view(1, 512, -1).transpose(1, 2).contiguous()
-```
-
-The resulting shape is [1, 2646, 512].
-    
-#### 2. encode the feature map
-
-First, calculate the residual encoder of each "pixel" with
-
-<p align=center>
-<img src="https://render.githubusercontent.com/render/math?math=e_{ik} = \frac{exp(-s_k\|r_{ik}\|^2)}{\sum_{j=1}^K exp(-s_j\|r_{ij}\|^2)} r_{ik}", style="width:30%;"></img>
-</p>
-
-where the residual is calculated by 
-
-<p align=center>
-<img src="https://render.githubusercontent.com/render/math?math=r_{ik} = x_i - d_k", style="width:15%;"></img>
-</p>
-
-```python 
-A = F.softmax(scaled_l22(X, model.head.encmodule.encoding[3].codewords, model.head.encmodule.encoding[3].scale), dim=2)
-```
-
-The resulting shape is [1, 2646, 32]. Then, aggregate the residuals
-
-<p align=center>
-<img src="https://render.githubusercontent.com/render/math?math=e_k=\sum_{i=1}^Ne_{ik}", style="width:15%;"></img>
-</p>
-
-```python
-E = aggregate(A, X, model.head.encmodule.encoding[3].codewords)
-```
-
-The resulting shape of encoder, E, is [1, 32, 512]. This means that E = [E_1, E_2, ..., E_K]
-
-#### 3. average the codewords
-
-Normalize, ReLU, then mean().
-
-The resulting shape is [1, 512]. At this stage, each channel contains information about codeword features. This is the long white stick that appears right after "encode" triangle in figure 2.
-
-#### 4. fc layer and channel-wise multiplication
-
-```python
-gamma = model.head.encmodule.fc(en)
-y = gamma.view(b, c, 1, 1)
-
-outputs = [F.relu_(feat + feat * y)]
-```
-
-Finally, apply fully connected layer, and do channel-wise multiplication to the original feature.
 
 ### - Encoding Module (Deep Texture Encoding Network)
 
@@ -164,6 +108,65 @@ BoW 도 K-means 처럼 각각의 descriptor 을 가장 가까운 codeword로 har
 
 - A pre-trained ResNet is used to extract dense convolutional feature maps
 - Context Encoding Module is built on top to capture encoded semantics and capture **scaling factors**
+
+### Encoding Layer
+
+#### 1. BxDxHxW => Bx(HW)xD
+    
+Flatten the 2D image to 1D. 
+
+```python
+X = en.view(1, 512, -1).transpose(1, 2).contiguous()
+```
+
+The resulting shape is [1, 2646, 512].
+    
+#### 2. encode the feature map
+
+First, calculate the residual encoder of each "pixel" with
+
+<p align=center>
+<img src="https://render.githubusercontent.com/render/math?math=e_{ik} = \frac{exp(-s_k\|r_{ik}\|^2)}{\sum_{j=1}^K exp(-s_j\|r_{ij}\|^2)} r_{ik}", style="width:30%;"></img>
+</p>
+
+where the residual is calculated by 
+
+<p align=center>
+<img src="https://render.githubusercontent.com/render/math?math=r_{ik} = x_i - d_k", style="width:15%;"></img>
+</p>
+
+```python 
+A = F.softmax(scaled_l22(X, model.head.encmodule.encoding[3].codewords, model.head.encmodule.encoding[3].scale), dim=2)
+```
+
+The resulting shape is [1, 2646, 32]. Then, aggregate the residuals
+
+<p align=center>
+<img src="https://render.githubusercontent.com/render/math?math=e_k=\sum_{i=1}^Ne_{ik}", style="width:15%;"></img>
+</p>
+
+```python
+E = aggregate(A, X, model.head.encmodule.encoding[3].codewords)
+```
+
+The resulting shape of encoder, E, is [1, 32, 512]. This means that E = [E_1, E_2, ..., E_K]
+
+#### 3. average the codewords
+
+Normalize, ReLU, then mean().
+
+The resulting shape is [1, 512]. At this stage, each channel contains information about codeword features. This is the long white stick that appears right after "encode" triangle in figure 2.
+
+#### 4. fc layer and channel-wise multiplication
+
+```python
+gamma = model.head.encmodule.fc(en)
+y = gamma.view(b, c, 1, 1)
+
+outputs = [F.relu_(feat + feat * y)]
+```
+
+Finally, apply fully connected layer, and do channel-wise multiplication to the original feature.
 
 ```python
 
