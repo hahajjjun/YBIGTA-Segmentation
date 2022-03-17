@@ -56,6 +56,12 @@ First, calculate the residual encoder of each "pixel" with
 <img src="https://render.githubusercontent.com/render/math?math=e_{ik} = \frac{exp(-s_k\|r_{ik}\|^2)}{\sum_{j=1}^K exp(-s_j\|r_{ij}\|^2)} r_{ik}", style="width:30%;"></img>
 </p>
 
+where the residual is calculated by 
+
+<p align=center>
+<img src="https://render.githubusercontent.com/render/math?math=r_{ik} = x_i - d_k", style="width:20%;"></img>
+</p>
+
 ```python 
 A = F.softmax(scaled_l22(X, model.head.encmodule.encoding[3].codewords, model.head.encmodule.encoding[3].scale), dim=2)
 ```
@@ -63,7 +69,7 @@ A = F.softmax(scaled_l22(X, model.head.encmodule.encoding[3].codewords, model.he
 The resulting shape is [1, 2646, 32]. Then, aggregate the residuals
 
 <p align=center>
-<img src="https://render.githubusercontent.com/render/math?math=e_k=\sum_{i=1}^Ne_{ik}", style="width:30%;"></img>
+<img src="https://render.githubusercontent.com/render/math?math=e_k=\sum_{i=1}^Ne_{ik}", style="width:20%;"></img>
 </p>
 
 ```python
