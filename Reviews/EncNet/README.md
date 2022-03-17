@@ -113,9 +113,19 @@ BoW 도 K-means 처럼 각각의 descriptor 을 가장 가까운 codeword로 har
 - Context Encoding Module is built on top to capture encoded semantics and capture **scaling factors**
 
 ```python
+# experiments.segmentation.train
+loss = self.criterion(outputs, target)
+
+# encoding.nn.encoding.Encoding
+# SE에서 학습하려는 대상
 self.codewords = Parameter(torch.Tensor(K, D), requires_grad=True)
 self.scale = Parameter(torch.Tensor(K), requires_grad=True)
 
+# encoding.models.sseg.encnet.EncNet
+# aux에서 학습하려는 대상
+self.auxlayer = FCNHead(1024, nclass, norm_layer=norm_layer)
+
+# encoding.nn.loss.SegmentationLosses.forward
 pred1, se_pred, pred2, target = tuple(inputs)
 se_target = self._get_batch_label_vector(target, nclass=self.nclass).type_as(pred1)
 loss1 = super(SegmentationLosses, self).forward(pred1, target)
@@ -123,11 +133,10 @@ loss2 = super(SegmentationLosses, self).forward(pred2, target)
 loss3 = self.bceloss(torch.sigmoid(se_pred), se_target)
 return loss1 + self.aux_weight * loss2 + self.se_weight * loss3
 ```
-There are two trainings: segmentation and classification.
 
-Segmentation training is done with the 
+Segmentation (codewords, scale), auxlayer은 cross-entropy를 사용했으며, SE-Loss 는 BCELoss 를 사용.
 
-SE loss is responsible for classification training.
+실제로 training을 할 때, 각 label 이 있는지를 0/1 로 변환한다음, BCELoss를 계산하는 방식을 채택.
 
 ### Encoding Layer
 
