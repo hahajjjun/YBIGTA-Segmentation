@@ -167,6 +167,12 @@ gamma = model.head.encmodule.fc(en)
 y = gamma.view(b, c, 1, 1)
 
 outputs = [F.relu_(feat + feat * y)]
+
+'''
+self.fc = nn.Sequential(
+    nn.Linear(in_channels, in_channels),
+    nn.Sigmoid())
+'''
 ```
 
 Finally, apply fully connected layer, and do channel-wise multiplication to the original feature.
