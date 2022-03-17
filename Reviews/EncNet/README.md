@@ -36,7 +36,14 @@ Bag of words: https://en.wikipedia.org/wiki/Bag-of-words_model_in_computer_visio
 
 Use global average pooling to **squeeze** the feature map into channel descriptor. Then, calculate channel-wize dependencies to **excite** back.
 
-In EncNet, <img src="https://render.githubusercontent.com/render/math?math={\displaystyle\sum_{d=0}^{d_{max}}}">
+In EncNet, the encoding layer is responsible for squeezing, which squeezes [512, 42, 63] feature label into [1, 512] fc connected layer. The encoding follows these steps:
+
+    1. BxDxHxW => Bx(HW)xD
+    
+    `X = en.view(1, 512, -1).transpose(1, 2).contiguous()`
+    
+    2. 
+    <img src="https://render.githubusercontent.com/render/math?math={\displaystyle\e_{ik} = \frac{exp(-s_k\|r_{ik}\|^2)}{\sum_{j=1}^K exp(-s_j\|r_{ij}\|^2)} r_{ik}}}">
 
 - SIFT 
 
