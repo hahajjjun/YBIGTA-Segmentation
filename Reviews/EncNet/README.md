@@ -106,7 +106,17 @@ What does this layer actually do?
 
 This layer gets input, like [1, 2646, 512] above (remember, it's a feature map after downsampling few times with ResNet), and tries to find which visual descriptor corresponds to which codeword.
 
-In fact, given a set of N visual descriptors X = {X_1, ..., X_N} (N = 2646) and a learned codebook with K codewords C = {c_1, ... c_K} (K = 32), we assign a descriptor X_i to each descriptor c_k with the corresponding weight a_ik.
+In fact, given a set of N visual descriptors X = {X_1, ..., X_N} (N = 2646) and a learned codebook with K codewords C = {c_1, ... c_K} (K = 32), we assign a descriptor X_i to each codeword c_k with the corresponding weight a_ik.
+
+In Korean, 각각의 descriptor이 어느 codeword 에 해당하는지 assign 해주는 것이다.
+
+    * Descriptor 은 무엇인가?
+    
+    * 비슷한 접근은?
+    
+        + Dictionary Learning
+        
+        + Bag of Words
 
 ## Structure
 
