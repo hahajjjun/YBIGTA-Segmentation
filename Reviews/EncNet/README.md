@@ -27,12 +27,16 @@ Bag of words: https://en.wikipedia.org/wiki/Bag-of-words_model_in_computer_visio
 
 ## 관련지식 [Updated!]
 
-- SENet
+- [SENet](https://jayhey.github.io/deep%20learning/2018/07/18/SENet/)
 
 <p align=center>
-<img src="https://i.imgur.com/ufAxbPN.png", width=600dpi></img>
+<img src="https://i.imgur.com/ufAxbPN.png", width=900dpi></img>
 </p>
 <p align=center>Fig 2. SE block in application</p>
+
+Use global average pooling to **squeeze** the feature map into channel descriptor. Then, calculate channel-wize dependencies to **excite** back.
+
+In EncNet, $$ \frac{\partial \rho}{\partial t} + \nabla \cdot \vec{j} = 0 \,. \label{eq:continuity} $$
 
 - SIFT 
 
