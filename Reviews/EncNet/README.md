@@ -4,8 +4,6 @@ Given the image of a room, it is unlikely that we will find the presence of vehi
 
 Can we leverage the context encoding of classic approaches with the power of deep learning?
 
-Bag of words: https://en.wikipedia.org/wiki/Bag-of-words_model_in_computer_vision
-
 ## Previous approaches
 
 <p align=center>
@@ -110,25 +108,37 @@ In fact, given a set of N visual descriptors X = {X_1, ..., X_N} (N = 2646) and 
 
 In Korean, 각각의 descriptor이 어느 codeword 에 해당하는지 assign 해주는 것이다.
 
-* Descriptor 은 무엇인가?
+* Descriptor, codeword 는 무엇인가?
 
+[SIFT](https://bskyvision.com/21) 참조. 기본적으로 CNN 은 scale, rotation, affine transformation 등에 민감하다. 고전적인 (그래봐야 20년정도 전에..) 방법론에는 크기 등의 요소에 영향을 받지 않는 이미지의 고유 (invariant) 특징을 추출해내려는 노력이 담겨있는데, 이중 대표적인 것이 SIFT이다. Descriptor은 image features 와 비슷하다고 생각할 수 있다.
 
+눈치챘겠지만, codeword 는 미리 만들어놓은 사전이다. 제일 흔하게 등장하는 이미지의 대표 feature을 저장해 놓은 것이다. Descriptor 과 각각의 codeword를 비교하면, 이 descriptor이 어떤 codeword과 비슷한 지 알 수 있을것이다.
 
 * 비슷한 접근은?
 
     + Dictionary Learning
 
-    K means 는 dictionary 를 배워서 hard-assign 한다. 즉, { X_1: c_3, X_2: c_7, ..., X_2646: c_27 } 같은 결과가 나온다. 즉, smoothing factor s_k -> inf이며, 
+    K means 는 dictionary 를 배워서 hard-assign 한다. 즉, { X_1: c_3, X_2: c_7, ..., X_2646: c_27 } 같은 결과가 나온다. 즉, smoothing factor s_k -> inf이며, encoder의 식은
     
     <p align=center>
     <img src="https://render.githubusercontent.com/render/math?math=e_{ik} = \frac{1}{32}*(x_i - d_k)", style="width:15%;"></img>
     </p>
     
-    이라고 
+    으로 바뀌며, Codeword 는 각 군집의 중심으로 표현될 것이다. 문제는, codeword 가 많아질 수록 겹치는 feature도 생기게 될텐데, 이 때 hard-assigning을 하면 이러한 겹침 현상을 해결해줄 수 없다.
     
-    GMM (Gaussian Mixture Model)은 확률적으로 feature destribution을 계산한다. 
+    이러한 단점을 보완하고자 GMM (Gaussian Mixture Model)은 확률적으로 feature destribution을 계산한다. Encoding layer은 GMM의 간소화된 버전이라고 생각할 수 있는데, 이 때 32개의 클러스터는 각각 다른 scaling (s_k) 를 가지게 된다.
 
-    + Bag of Words
+    + [Bag of Words](https://en.wikipedia.org/wiki/Bag-of-words_model_in_computer_vision)
+
+BoW 도 K-means 처럼 각각의 descriptor 을 가장 가까운 codeword로 hard-assign 하고, 그 codeword가 나타난 빈도를 합쳐서 그 image가 무엇인지 알아낸다.
+
+예시:
+
+<p align=center>
+<img src="https://github.com/ovysotska/in_simple_english/raw/59f3d0816418a786bfcce74e3227c71223a4e06f//data/bag_of_words/histogram_comparisons.png", width=800dpi></img>
+</p>
+<p aligh=center>Fig 4. Bag of Words</p>
+
 
 ## Structure
 
