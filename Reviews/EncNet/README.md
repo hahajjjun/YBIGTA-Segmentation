@@ -112,7 +112,9 @@ In Korean, 각각의 descriptor이 어느 codeword 에 해당하는지 assign �
 
 [SIFT](https://bskyvision.com/21) 참조. 기본적으로 CNN 은 scale, rotation, affine transformation 등에 민감하다. 고전적인 (그래봐야 20년정도 전에..) 방법론에는 크기 등의 요소에 영향을 받지 않는 이미지의 고유 (invariant) 특징을 추출해내려는 노력이 담겨있는데, 이중 대표적인 것이 SIFT이다. Descriptor은 image features 와 비슷하다고 생각할 수 있다.
 
-눈치챘겠지만, codeword 는 미리 만들어놓은 사전이다. 제일 흔하게 등장하는 이미지의 대표 feature을 저장해 놓은 것이다. Descriptor 과 각각의 codeword를 비교하면, 이 descriptor이 어떤 codeword과 비슷한 지 알 수 있을것이다.
+눈치챘겠지만, codeword 는 미리 만들어놓은 "이미지 특징 사전"이며, 자주 등장하는 feature들을 descriptor의 형태로 저장해 놓은 것이다. 이 Descriptor 과 각각의 codeword를 비교하면, 이 descriptor이 어떤 codeword과 비슷한 지 알 수 있을것이다.
+
+이를 이용한 [Spatial Transform Network](https://towardsdatascience.com/spatial-transformer-networks-b743c0d112be)도 있는데, 여기선 생략.
 
 * 비슷한 접근은?
 
@@ -144,7 +146,14 @@ BoW 도 K-means 처럼 각각의 descriptor 을 가장 가까운 codeword로 har
 </p>
 <p align=center>Fig 5. Bag of Words, Histogram Comparisons</p>
 
-다른 이미지와 비교해본다. 이미지 1번과 이미지 4번이 같은 이미지로 분류된다.
+다른 이미지와 비교해본다. 이미지 1번과 이미지 4번이 같은 이미지로 분류된다. 그렇다면 residual은 어떻게 될까?
+
+<p align=center>
+<img src="https://github.com/ovysotska/in_simple_english/raw/59f3d0816418a786bfcce74e3227c71223a4e06f//data/bag_of_words/cost_matrix_cosine.png", width=800dpi></img>
+</p>
+<p align=center>Fig 6. Bag of Words, Cosine Similarity</p>
+
+이런식으로 각자 cosine similarity 를 계산한다. 일치하면 잔차가 0인것을 확인 가능. EncNet에서는 fc 로 대체한다.
 
 ## Structure
 
