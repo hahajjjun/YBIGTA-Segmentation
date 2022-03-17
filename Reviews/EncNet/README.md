@@ -38,13 +38,23 @@ Use global average pooling to **squeeze** the feature map into channel descripto
 
 In EncNet, the encoding layer is responsible for squeezing, which squeezes [512, 42, 63] feature label into [1, 512] fc connected layer. The encoding follows these steps:
 
-    1. BxDxHxW => Bx(HW)xD
+1. BxDxHxW => Bx(HW)xD
     
-    `X = en.view(1, 512, -1).transpose(1, 2).contiguous()`
+Flatten the 2D image to 1D. `X = en.view(1, 512, -1).transpose(1, 2).contiguous()`
     
-    2. 
-    
+2. encode the feature map
+
+First, calculate the residual encoder of each "pixel" with
+
 <img src="https://render.githubusercontent.com/render/math?math=e_{ik} = \frac{exp(-s_k\|r_{ik}\|^2)}{\sum_{j=1}^K exp(-s_j\|r_{ij}\|^2)} r_{ik}"></img>
+
+`A = F.softmax(scaled_l22(X, model.head.encmodule.encoding[3].codewords, model.head.encmodule.encoding[3].scale), dim=2)`
+
+Then, aggregate the residuals
+
+<img src="https://render.githubusercontent.com/render/math?math=e_k=\sum_{i=1}^Ne_{ik}"></img>
+
+`E = aggregate(A, X, model.head.encmodule.encoding[3].codewords)`
 
 - SIFT 
 
