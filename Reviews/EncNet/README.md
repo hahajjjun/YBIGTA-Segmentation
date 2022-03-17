@@ -56,7 +56,7 @@ In Korean, 각각의 descriptor이 어느 codeword 에 해당하는지 assign �
 
 [SIFT](https://bskyvision.com/21) 참조. 기본적으로 CNN 은 scale, rotation, affine transformation 등에 민감하다. 고전적인 (그래봐야 20년정도 전에..) 방법론에는 크기 등의 요소에 영향을 받지 않는 이미지의 고유 (invariant) 특징을 추출해내려는 노력이 담겨있는데, 이중 대표적인 것이 SIFT이다. Descriptor은 image features 와 비슷하다고 생각할 수 있다.
 
-눈치챘겠지만, codeword 는 미리 만들어놓은 "이미지 특징 사전"이며, 자주 등장하는 feature들을 descriptor의 형태로 저장해 놓은 것이다. 이 Descriptor 과 각각의 codeword를 비교하면, 이 descriptor이 어떤 codeword과 비슷한 지 알 수 있을것이다.
+눈치챘겠지만, codeword 는 미리 만들어놓은 "이미지 특징 사전"이며, 자주 등장하는 feature들을 descriptor의 형태로 저장해 놓은 것이다. 따라서, **우리의 목적은 descriptor들이 어떤 codeword에 해당하는지 매핑하는 것이다.**
 
 이를 이용한 [Spatial Transform Network](https://towardsdatascience.com/spatial-transformer-networks-b743c0d112be)도 있는데, 여기선 생략.
 
