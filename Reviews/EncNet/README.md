@@ -135,10 +135,18 @@ BoW 도 K-means 처럼 각각의 descriptor 을 가장 가까운 codeword로 har
 예시:
 
 <p align=center>
+<img src="https://github.com/hahajjjun/YBIGTA-Segmentation/blob/cdbb0c74bae35b202e2dc5285f3582cd66fd2ec9/Reviews/EncNet/Assets/Bag%20of%20Words.png", width=800dpi></img>
+</p>
+<p align=center>Fig 4. Bag of Words, Image Patches</p>
+
+이런식으로, 이미지에서 각 descriptor에 해당하는 image patch를 확인하고,
+
+<p align=center>
 <img src="https://github.com/ovysotska/in_simple_english/raw/59f3d0816418a786bfcce74e3227c71223a4e06f//data/bag_of_words/histogram_comparisons.png", width=800dpi></img>
 </p>
-<p aligh=center>Fig 4. Bag of Words</p>
+<p align=center>Fig 5. Bag of Words, Histogram Comparisons</p>
 
+다른 이미지와 비교해본다. 이미지 1번과 이미지 4번이 같은 이미지로 분류된다.
 
 ## Structure
 
