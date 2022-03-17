@@ -38,15 +38,17 @@ Use global average pooling to **squeeze** the feature map into channel descripto
 
 In EncNet, the encoding layer is responsible for squeezing, which squeezes [512, 42, 63] feature label into [1, 512] fc connected layer. The encoding follows these steps:
 
-    1. BxDxHxW => Bx(HW)xD
+1. BxDxHxW => Bx(HW)xD
     
 Flatten the 2D image to 1D. 
 
 ```python
 X = en.view(1, 512, -1).transpose(1, 2).contiguous()
 ```
+
+The resulting shape is [1, 2646, 512].
     
-    2. encode the feature map
+2. encode the feature map
 
 First, calculate the residual encoder of each "pixel" with
 
@@ -69,6 +71,12 @@ E = aggregate(A, X, model.head.encmodule.encoding[3].codewords)
 ```
 
 The resulting shape is [1, 32, 512]
+
+3. average the codewords
+
+Normalize, ReLU, then mean().
+
+The resulting shape is [1, 512]. At this stage, each channel contains information about codeword features. This is the long white stick that appears in the context 
 
 - SIFT 
 
