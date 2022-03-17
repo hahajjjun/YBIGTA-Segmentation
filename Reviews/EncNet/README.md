@@ -46,15 +46,19 @@ Flatten the 2D image to 1D. `X = en.view(1, 512, -1).transpose(1, 2).contiguous(
 
 First, calculate the residual encoder of each "pixel" with
 
+<p align=center>
 <img src="https://render.githubusercontent.com/render/math?math=e_{ik} = \frac{exp(-s_k\|r_{ik}\|^2)}{\sum_{j=1}^K exp(-s_j\|r_{ij}\|^2)} r_{ik}"></img>
+</p>
 
 `A = F.softmax(scaled_l22(X, model.head.encmodule.encoding[3].codewords, model.head.encmodule.encoding[3].scale), dim=2)`
 
 Then, aggregate the residuals
 
+<p align=center>
 <img src="https://render.githubusercontent.com/render/math?math=e_k=\sum_{i=1}^Ne_{ik}"></img>
+</p>
 
-`E = aggregate(A, X, model.head.encmodule.encoding[3].codewords)`
+`E = aggregate(A, X, model.head.encmodule.encoding[3].codewords)`{:.python}
 
 - SIFT 
 
