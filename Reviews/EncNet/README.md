@@ -36,7 +36,7 @@ Bag of words: https://en.wikipedia.org/wiki/Bag-of-words_model_in_computer_visio
 
 Use global average pooling to **squeeze** the feature map into channel descriptor. Then, calculate channel-wize dependencies to **excite** back.
 
-In EncNet, $$ \frac{\partial \rho}{\partial t} + \nabla \cdot \vec{j} = 0 \,. \label{eq:continuity} $$
+In EncNet, $`\frac{\partial \rho}{\partial t} + \nabla \cdot \vec{j} = 0 \,. \label{eq:continuity}`$
 
 - SIFT 
 
