@@ -110,13 +110,25 @@ In fact, given a set of N visual descriptors X = {X_1, ..., X_N} (N = 2646) and 
 
 In Korean, 각각의 descriptor이 어느 codeword 에 해당하는지 assign 해주는 것이다.
 
-    * Descriptor 은 무엇인가?
+* Descriptor 은 무엇인가?
+
+
+
+* 비슷한 접근은?
+
+    + Dictionary Learning
+
+    K means 는 dictionary 를 배워서 hard-assign 한다. 즉, { X_1: c_3, X_2: c_7, ..., X_2646: c_27 } 같은 결과가 나온다. 즉, smoothing factor s_k -> inf이며, 
     
-    * 비슷한 접근은?
+    <p align=center>
+    <img src="https://render.githubusercontent.com/render/math?math=e_{ik} = \frac{1}{32}*(x_i - d_k)", style="width:15%;"></img>
+    </p>
     
-        + Dictionary Learning
-        
-        + Bag of Words
+    이라고 
+    
+    GMM (Gaussian Mixture Model)은 확률적으로 feature destribution을 계산한다. 
+
+    + Bag of Words
 
 ## Structure
 
