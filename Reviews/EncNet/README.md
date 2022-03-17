@@ -51,7 +51,7 @@ X = en.view(1, 512, -1).transpose(1, 2).contiguous()
 First, calculate the residual encoder of each "pixel" with
 
 <p align=center>
-<img src="https://render.githubusercontent.com/render/math?math=e_{ik} = \frac{exp(-s_k\|r_{ik}\|^2)}{\sum_{j=1}^K exp(-s_j\|r_{ij}\|^2)} r_{ik}"></img>
+<img src="https://render.githubusercontent.com/render/math?math=e_{ik} = \frac{exp(-s_k\|r_{ik}\|^2)}{\sum_{j=1}^K exp(-s_j\|r_{ij}\|^2)} r_{ik}", width=150%></img>
 </p>
 
 ```python 
@@ -61,7 +61,7 @@ A = F.softmax(scaled_l22(X, model.head.encmodule.encoding[3].codewords, model.he
 Then, aggregate the residuals
 
 <p align=center>
-<img src="https://render.githubusercontent.com/render/math?math=e_k=\sum_{i=1}^Ne_{ik}"></img>
+<img src="https://render.githubusercontent.com/render/math?math=e_k=\sum_{i=1}^Ne_{ik}", width=150%></img>
 </p>
 
 ```python
