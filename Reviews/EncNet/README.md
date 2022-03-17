@@ -97,11 +97,16 @@ Finally, apply fully connected layer, and do channel-wise multiplication to the 
 
 - Encoding Module (Deep Texture Encoding Network)
 
-<p>
+<p align=center>
 <img src="https://github.com/hahajjjun/YBIGTA-Segmentation/blob/9fde1e414e4d0fc4f6f08719504e19df07f19b0a/Reviews/EncNet/Assets/Encoding%20Layer.png", width=600dpi></img>
 </p>
 <p align=center>Fig 3. The Encoding Layer learns an inherent Dictionary. The Residuals are calculated by pairwise difference between visual descriptors of the input and the codewords of the dictionary.</p>
-What doe 
+
+What does this layer actually do?
+
+This layer gets input, like [1, 2646, 512] above (remember, it's a feature map after downsampling few times with ResNet), and tries to find which visual descriptor corresponds to which codeword.
+
+In fact, given a set of N visual descriptors X = {X_1, ..., X_N} (N = 2646) and a learned codebook with K codewords C = {c_1, ... c_K} (K = 32), we assign a descriptor X_i to each descriptor c_k with the corresponding weight a_ik.
 
 ## Structure
 
