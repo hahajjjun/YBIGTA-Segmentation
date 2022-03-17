@@ -76,7 +76,18 @@ The resulting shape is [1, 32, 512]
 
 Normalize, ReLU, then mean().
 
-The resulting shape is [1, 512]. At this stage, each channel contains information about codeword features. This is the long white stick that appears in the context 
+The resulting shape is [1, 512]. At this stage, each channel contains information about codeword features. This is the long white stick that appears right after "encode" triangle in figure 2.
+
+4. fc layer and channel-wise multiplication
+
+```python
+gamma = model.head.encmodule.fc(en)
+y = gamma.view(b, c, 1, 1)
+
+outputs = [F.relu_(feat + feat * y)]
+```
+
+Finally, apply fully connected layer, and do channel-wise multiplication to the original feature.
 
 - SIFT 
 
