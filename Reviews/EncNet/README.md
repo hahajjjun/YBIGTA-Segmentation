@@ -25,6 +25,17 @@ Bag of words: https://en.wikipedia.org/wiki/Bag-of-words_model_in_computer_visio
 
 2. *Context Encoding Network (EncNet)*
 
+## 관련지식 [Updated!]
+
+- SENet
+
+<p align=center>
+<img src="https://i.imgur.com/ufAxbPN.png", width=600dpi></img>
+</p>
+<p align=center>Fig 2. SE block in application</p>
+
+- SIFT 
+
 ## Structure
 
 <p align=center>
