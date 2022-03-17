@@ -132,10 +132,8 @@ In Korean, 각각의 descriptor이 어느 codeword 에 해당하는지 assign �
 
 BoW 도 K-means 처럼 각각의 descriptor 을 가장 가까운 codeword로 hard-assign 하고, 그 codeword가 나타난 빈도를 합쳐서 그 image가 무엇인지 알아낸다.
 
-예시:
-
 <p align=center>
-<img src="https://github.com/hahajjjun/YBIGTA-Segmentation/blob/cdbb0c74bae35b202e2dc5285f3582cd66fd2ec9/Reviews/EncNet/Assets/Bag%20of%20Words.png", width=800dpi></img>
+<img src="https://github.com/hahajjjun/YBIGTA-Segmentation/blob/cdbb0c74bae35b202e2dc5285f3582cd66fd2ec9/Reviews/EncNet/Assets/Bag%20of%20Words.png", width=400dpi></img>
 </p>
 <p align=center>Fig 4. Bag of Words, Image Patches</p>
 
