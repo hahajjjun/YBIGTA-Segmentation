@@ -32,10 +32,13 @@ Can we leverage the context encoding of classic approaches with the power of dee
 </p>
 <p align=center>Fig 2. SE block in application</p>
 
-Use global average pooling to **squeeze** the feature map into channel descriptor. Then, calculate channel-wize dependencies to **excite** back.
+The purpose of SENet is to take advantage of interdependencies between channels of convolution features. It uses global average pooling to **squeeze** the feature map into channel descripton and calculates channel-wize dependencies to **excite** back. Here, r is a learnable parameter, and it is the primary parameter for computational cost.
+
+<p align=center>
+<img src="https://i.imgur.com/8Tr3YRa.png", width=600dpi></img>
+</p>
 
 In EncNet, the encoding layer is responsible for squeezing, which squeezes [512, 42, 63] feature label into [1, 512] fc connected layer. The encoding architecture is explained under **structure**
-
 
 ### - Encoding Module (Deep Texture Encoding Network)
 
