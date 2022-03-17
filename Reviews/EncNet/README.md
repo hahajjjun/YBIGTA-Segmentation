@@ -76,7 +76,7 @@ The resulting shape is [1, 2646, 32]. Then, aggregate the residuals
 E = aggregate(A, X, model.head.encmodule.encoding[3].codewords)
 ```
 
-The resulting shape is [1, 32, 512]
+The resulting shape of encoder, E, is [1, 32, 512]. This means that E = [E_1, E_2, ..., E_K]
 
 3. average the codewords
 
@@ -95,7 +95,11 @@ outputs = [F.relu_(feat + feat * y)]
 
 Finally, apply fully connected layer, and do channel-wise multiplication to the original feature.
 
-- SIFT 
+- Encoding Module (Deep Texture Encoding Network)
+
+
+
+What doe 
 
 ## Structure
 
