@@ -43,7 +43,8 @@ In EncNet, the encoding layer is responsible for squeezing, which squeezes [512,
     `X = en.view(1, 512, -1).transpose(1, 2).contiguous()`
     
     2. 
-    <img src="https://render.githubusercontent.com/render/math?math={\displaystyle\e_{ik} = \frac{exp(-s_k\|r_{ik}\|^2)}{\sum_{j=1}^K exp(-s_j\|r_{ij}\|^2)} r_{ik}}}">
+    
+<img src="https://render.githubusercontent.com/render/math?math={\displaystyle\e_{ik} = \frac{exp(-s_k\|r_{ik}\|^2)}{\sum_{j=1}^K exp(-s_j\|r_{ij}\|^2)} r_{ik}}}">
 
 - SIFT 
 
