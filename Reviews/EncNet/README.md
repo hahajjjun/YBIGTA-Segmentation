@@ -61,7 +61,7 @@ A = F.softmax(scaled_l22(X, model.head.encmodule.encoding[3].codewords, model.he
 Then, aggregate the residuals
 
 <p align=center>
-<img src="https://render.githubusercontent.com/render/math?math=e_k=\sum_{i=1}^Ne_{ik}", height=50%></img>
+<img src="https://render.githubusercontent.com/render/math?math=e_k=\sum_{i=1}^Ne_{ik}", style="height:100%;"></img>
 </p>
 
 ```python
