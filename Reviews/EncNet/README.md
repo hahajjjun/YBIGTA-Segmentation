@@ -97,8 +97,10 @@ Finally, apply fully connected layer, and do channel-wise multiplication to the 
 
 - Encoding Module (Deep Texture Encoding Network)
 
-
-
+<p>
+<img src="https://github.com/hahajjjun/YBIGTA-Segmentation/blob/9fde1e414e4d0fc4f6f08719504e19df07f19b0a/Reviews/EncNet/Assets/Encoding%20Layer.png", width=600dpi></img>
+</p>
+<p align=center>Fig 3. The Encoding Layer learns an inherent Dictionary. The Residuals are calculated by pairwise difference between visual descriptors of the input and the codewords of the dictionary.</p>
 What doe 
 
 ## Structure
