@@ -112,6 +112,23 @@ BoW 도 K-means 처럼 각각의 descriptor 을 가장 가까운 codeword로 har
 - A pre-trained ResNet is used to extract dense convolutional feature maps
 - Context Encoding Module is built on top to capture encoded semantics and capture **scaling factors**
 
+```python
+self.codewords = Parameter(torch.Tensor(K, D), requires_grad=True)
+self.scale = Parameter(torch.Tensor(K), requires_grad=True)
+
+pred1, se_pred, pred2, target = tuple(inputs)
+se_target = self._get_batch_label_vector(target, nclass=self.nclass).type_as(pred1)
+loss1 = super(SegmentationLosses, self).forward(pred1, target)
+loss2 = super(SegmentationLosses, self).forward(pred2, target)
+loss3 = self.bceloss(torch.sigmoid(se_pred), se_target)
+return loss1 + self.aux_weight * loss2 + self.se_weight * loss3
+```
+There are two trainings: segmentation and classification.
+
+Segmentation training is done with the 
+
+SE loss is responsible for classification training.
+
 ### Encoding Layer
 
 #### 1. BxDxHxW => Bx(HW)xD
