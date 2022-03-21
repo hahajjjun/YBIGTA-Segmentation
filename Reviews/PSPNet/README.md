@@ -3,7 +3,7 @@
 ### Related Works : DeepLab v3
 **Spatial Pyramid Pooling**
 - **DeepLab v1** : atrous convolution(dilated) & conditional random field(CRF)
-- **DeepLab v2** : ASPP(atrous spatial pyramid pooling) module for various size objects segmentation
+- **DeepLab v2** : ASPP(atrous spatial pyramid pooling) module for various size objects segmentation <br/>
 <img src = "https://user-images.githubusercontent.com/75057952/158048896-fef7ad0f-bc4f-4e8d-b44f-b9c2a39ff969.png" width = "200dp"></img>
 - **DeepLab v3** : ResNet structure for encoder, BatchNorm applied, ASPP module improvement
 - DeepLab v2에서의 ASPP module은 일반적인 DNN을 활용한 Semantic Segmentation에서는 pooling이나 stride를 이용할 때 spatial info를 상실하는 현상이 발생하는 것을 막기 위해 도입됨.
@@ -17,15 +17,15 @@
 - Semantic segmentation은 이미 object detection이 된 대상에 대해서 pixel-wise label을 붙이는 것
 - Scene parsing task는 말 그대로 주어진 'scene'을 보고 모든 subgroup들로 parsing하여 어떤 class에 속하는지까지 밝혀야 함
 
-**Observations with FCN**
+**Observations with FCN** <br/>
 <img src = "https://user-images.githubusercontent.com/75057952/158048916-5845ed4f-ba44-4f15-835d-d611a385e2de.png" width = "500dp"></img>
 - FCN is quite helpful for semantic segmentation, but FCN fails to learn scene context(global context, global scene category clue).
-    - 01. Mismatched Relationship
+    - Mismatched Relationship
         - Context relationship을 고려하지 않은 Segmentation
         - 첫째 그림에서 강 위에 떠 있는 것은 배이지, 차가 될 수 없다는 inference가 필요함
-    - 02. Confusion Categories
+    - Confusion Categories
         - Skyscraper vs. building(ambiguous...), 헷갈릴 수 있는 pixel classification
-    - 03. Inconspicuous Classes
+    - Inconspicuous Classes
         - 작은 size 혹은 주변 환경과의 유사성으로 인해 눈에 잘 띄지 않는 물체의 pixel classification
         - 셋째 그림에서 베개는 주변 이불과 유사하여 구분되지 않을 수 있음
 - Spatial pyramid pooling can help this problem.
@@ -73,7 +73,7 @@ model_urls = {
 
 **2) Define architecture of ResNet families : Basic Block and Bottleneck**
 
-<img src = "attachment:image.png" width = "700dp"></img>
+<img src = "https://user-images.githubusercontent.com/75057952/158049370-53fd3486-8cbf-4bd0-9fbc-c115c49672cf.png" width = "700dp"></img>
 
 **02. PSPNet.py**
 
@@ -84,23 +84,18 @@ import torch.nn.functional as F
 import model.resnet as models
 ````
 
-**1) Pyramid Parsing Module**
-<img src= "https://user-images.githubusercontent.com/75057952/158048952-ab32adea-be52-4b6c-9002-0265308afa79.png" width = "700dp"></img>
-**2) ResNet to PSPNet**
-<img src= "https://user-images.githubusercontent.com/75057952/158048957-b47d28f3-7168-4a34-a228-e475778cc40e.png" width = "800dp"></img>
-<img src= "https://user-images.githubusercontent.com/75057952/158048959-0fd8428b-17eb-4ed6-ae2f-b39761a0d963.png" width = "800dp"></img>
+**1) Pyramid Parsing Module** <br/>
+<img src= "https://user-images.githubusercontent.com/75057952/158048952-ab32adea-be52-4b6c-9002-0265308afa79.png" width = "700dp"></img> <br/>
+**2) ResNet to PSPNet** <br/>
+<img src= "https://user-images.githubusercontent.com/75057952/158048957-b47d28f3-7168-4a34-a228-e475778cc40e.png" width = "800dp"></img> <br/>
+<img src= "https://user-images.githubusercontent.com/75057952/158048959-0fd8428b-17eb-4ed6-ae2f-b39761a0d963.png" width = "800dp"></img> <br/>
 ---
 - Auxiliary moduel는 segmentation task를 수행하는 것이 아니라 simple classifier
 - 전체적인 학습을 보조하는 효과가 있음
 
-<img src = "https://user-images.githubusercontent.com/75057952/158048962-f02a9304-4a73-41dc-8e25-f7e0abff516d.png" width = "400dp"></img>
+<img src = "https://user-images.githubusercontent.com/75057952/158048962-f02a9304-4a73-41dc-8e25-f7e0abff516d.png" width = "400dp"></img> <br/>
 
-<img src = "https://user-images.githubusercontent.com/75057952/158048969-c0b8594f-f3a6-4499-8602-726eae6e55c9.png" width = "800dp"></img>
+<img src = "https://user-images.githubusercontent.com/75057952/158048969-c0b8594f-f3a6-4499-8602-726eae6e55c9.png" width = "800dp"></img> <br/>
 - ```segmentation loss```는 ```NLLLoss2d()``` loss (Cross entropy loss는 softmax를 적용한 뒤 loss를 측정하는 것에 비해, NLLLoss는 softmax를 적용하지 않음)
 - ```classification loss```는 ```BCEWithLogitsLoss()``` (Cross entropy에서 softmax 대신 sigmoid를 사용함)
 - 총 loss는 ```segmentation loss```에 $alpha(=0.4) \times$ ```classification loss```를 더한 값
-
-
-```python
-
-```
