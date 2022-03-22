@@ -20,7 +20,7 @@ The authors discard the idea of using patches; instead, they decide to improve u
 
 ### FCN
 
-<img src=https://www.researchgate.net/publication/327521314/figure/fig1/AS:668413361930241@1536373572028/Fully-convolutional-neural-network-architecture-FCN-8.ppm, width=500px>
+<img src=https://www.researchgate.net/publication/327521314/figure/fig1/AS:668413361930241@1536373572028/Fully-convolutional-neural-network-architecture-FCN-8.ppm, width=500dpi>
 
 - The number of upsampling layers does not match the number of downsampling layers
 - Uses bilinear interpolation for upsampling the convoloved image -> not learnable
@@ -28,8 +28,12 @@ The authors discard the idea of using patches; instead, they decide to improve u
 
 ### U-Net
 
-<img src=https://miro.medium.com/max/1200/1*qNdglJ1ORP3Gq77MmBLhHQ.png, width=500px>
+<img src=https://miro.medium.com/max/1200/1*qNdglJ1ORP3Gq77MmBLhHQ.png, width=500dpi>
 
 - Symmetric upsampling & downsampling layers
 - Uses skip connections and concatenation instead of adding up
 - Interpolation is learnable
+
+## Techniques
+
+(Overlap tile strategy)[https://joungheekim.github.io/img/in-post/2020/2020-09-28/overlap_tile.png]
