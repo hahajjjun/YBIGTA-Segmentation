@@ -36,4 +36,4 @@ The authors discard the idea of using patches; instead, they decide to improve u
 
 ## Techniques
 
-(Overlap tile strategy)[https://joungheekim.github.io/img/in-post/2020/2020-09-28/overlap_tile.png]
+[Overlap title strategy](https://joungheekim.github.io/img/in-post/2020/2020-09-28/overlap_tile.png)
