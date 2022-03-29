@@ -32,7 +32,12 @@ The paper proposes few limitations of FCN.
 
 Unpooling: Max-Pooling에서 골랐던 값의 index를 기억한 뒤, 그 index 의 값은 채우고 나머지는 0
 
-Deconvolution: Bilinear interpolation 대신에 implement한 upsampling method
+Deconvolution: Bilinear interpolation 대신에 implement한 upsampling method. Transposed convolution이라고 하는데, 아래의 연산을 수행.
+
+<p align="center">
+<img src="https://miro.medium.com/max/1400/1*yxBd_pCiEVVwEQFmc-Heog.png", width="500dpi">
+</p>
+
 
 ```cpp
 template <typename Dtype>
