@@ -89,6 +89,72 @@ void DeconvolutionLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
 
 Image size가 match해야하기 때문에, conv layer에서 padding size를 1로 설정함.
 
-2. Instance wise segmentation
+2. Instance wise segmentation, ensembling with FCN
 
-3. Ensembling with FCN
+Generate a number of **candidate proposals**, then **aggregate** the results
+
+```m
+% padding for easy cropping    
+[img_height, img_width, ~] = size(I);
+pad_offset_col = img_height;
+pad_offset_row = img_width;
+
+% pad every images(I, cls_seg, inst_seg...) to make cropping easy
+padded_I = padarray(I,[pad_offset_row, pad_offset_col]);
+padded_result_base = padarray(result_base,[pad_offset_row, pad_offset_col]);
+padded_prob_base = padarray(prob_base,[pad_offset_row, pad_offset_col]);
+padded_cnt_base = padarray(cnt_base, [pad_offset_row, pad_offset_col]);
+norm_padded_prob_base = padarray(norm_prob_base,[pad_offset_row, pad_offset_col]);
+norm_padded_prob_base(:,:,1) = eps;
+
+padded_frame_255 = 255-padarray(uint8(ones(size(I,1),size(I,2))*255),[pad_offset_row, pad_offset_col]);
+
+padded_result_base = padded_result_base + padded_frame_255;
+
+%% load extended bounding box
+cache = load(sprintf(edgebox_cache_path, ids{i})); % boxes_padded
+boxes_padded = cache.boxes_padded;
+
+numBoxes = size(boxes_padded,1);    
+cnt_process = 1;
+for bidx = 1:numBoxes  
+    box = boxes_padded(bidx,:);
+    box_wd = box(3)-box(1)+1;
+    box_ht = box(4)-box(2)+1;
+
+    if min(box_wd, box_ht) < 112, continue; end   
+
+    input_data = preprocess_image_bb(padded_I, boxes_padded(bidx,:), config.im_sz); 
+    cnn_output = caffe('forward', input_data);
+
+    segImg = permute(cnn_output{1}, [2, 1, 3]);
+    segImg = imresize(segImg, [box_ht, box_wd], 'bilinear');
+
+    % accumulate prediction result
+    cropped_prob_base = padded_prob_base(box(2):box(4),box(1):box(3),:);
+    padded_prob_base(box(2):box(4),box(1):box(3),:) = max(cropped_prob_base,segImg);
+
+    if mod(cnt_process, 10) == 0, fprintf(',%d', cnt_process); end
+    if cnt_process >= config.max_proposal_num
+        break;
+    end
+
+    cnt_process = cnt_process + 1;
+end
+
+%% save DeconvNet prediction score
+deconv_score = padded_prob_base(pad_offset_row:pad_offset_row+size(I,1)-1,pad_offset_col:pad_offset_col+size(I,2)-1,:);
+
+%% load fcn-8s score
+fcn_cache = load(sprintf(fcn_score_path, ids{i}));
+fcn_score = fcn_cache.score;
+
+%% ensemble
+zero_mask = zeros(size(fcn_score));
+fcn_score = max(zero_mask,fcn_score);
+
+ens_score = deconv_score .* fcn_score;
+[ens_segscore, ens_segmask] = max(ens_score, [], 3);
+ens_segmask = uint8(ens_segmask-1);
+```
+
