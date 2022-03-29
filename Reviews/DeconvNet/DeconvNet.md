@@ -93,7 +93,7 @@ Image size가 match해야하기 때문에, conv layer에서 padding size를 1로
 
 Generate a number of **candidate proposals**, then **aggregate** the results
 
-```python
+```matlab
 % padding for easy cropping    
 [img_height, img_width, ~] = size(I);
 pad_offset_col = img_height;
