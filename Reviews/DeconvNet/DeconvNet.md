@@ -8,16 +8,19 @@ The paper proposes few limitations of FCN.
 <img src="https://pseudo-lab.github.io/SegCrew-Book/_images/deconv1.png", width="600dpi">
 </p>
 1. The network is sensitive to scaling
+
   - Skip connection does not fully address the problem
+
 2. Detailed structures of object are ignored due to coarse* label map*
+
   - FCN employs 16x16 label map, which results in unclear boundary information
 
 *coarse*: fancy way of saying low-resolution
 *label map*: input to the deconvolutional layer.
 
-## Solution
+## Architecture
 
-1. Multi Layer Deconvolution Network
+### Multi Layer Deconvolution Network
 
 <p align="center">
 <img src="https://pseudo-lab.github.io/SegCrew-Book/_images/deconv2.png", width="900dpi">
@@ -89,9 +92,30 @@ void DeconvolutionLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
 
 Image size가 match해야하기 때문에, conv layer에서 padding size를 1로 설정함.
 
-2. Instance wise segmentation, ensembling with FCN
+## Training
+
+### Two-stage Training
+
+- First stage: cropped images with object in the center
+- Second stage: candidate proposals sufficiently overlapped with ground-truth segmentations
+
+Makes training more challenging, but allows the model to be robust to misaligned proposals.
+
+## Inference
+
+Instance wise segmentation, ensembling with FCN
 
 Generate a number of **candidate proposals**, then **aggregate** the results
+
+여러장의 map을 image size에 맞게 (빈값은 0으로 채움) 조정한 뒤, "aggregate" 함. Aggregate라고 복잡해보일 수 있는데.. 사실상 voting이랑 똑같은 개념이다.
+
+<p align="center">
+<img src="https://github.com/hahajjjun/YBIGTA-Segmentation/blob/2e79bcb8c8fea6fa23d71ba1bd795d524f725937/Reviews/DeconvNet/Assets/Aggregate.png", width="500dpi">
+</p>
+
+위에는 hard voting, 밑에는 soft voting...
+
+그리고 (머신러닝에서도 그랬듯) 소프트맥스로 최종 classification.
 
 ```matlab
 % padding for easy cropping    
