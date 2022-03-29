@@ -15,6 +15,7 @@ The paper proposes few limitations of FCN.
   - FCN employs 16x16 label map, which results in unclear boundary information
 
 *coarse*: fancy way of saying low-resolution
+
 *label map*: input to the deconvolutional layer.
 
 ## Architecture
@@ -24,7 +25,6 @@ The paper proposes few limitations of FCN.
 <p align="center">
 <img src="https://pseudo-lab.github.io/SegCrew-Book/_images/deconv2.png", width="900dpi">
 </p>
-
 
 <p align="center">
 <img src="https://pseudo-lab.github.io/SegCrew-Book/_images/deconv3.png", width="500dpi">
