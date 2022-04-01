@@ -13,7 +13,7 @@ Lists and available links of papers are presented below.
 |[2D U-Net](https://arxiv.org/pdf/1505.04597)||[IMPLEMENTATION](https://github.com/hahajjjun/YBIGTA-Segmentation/blob/master/Reviews/U-Net/UNet.ipynb)|
 |[3D U-Net](https://arxiv.org/abs/1606.06650)||[IMPLEMENTATION](https://github.com/hahajjjun/YBIGTA-Segmentation/blob/master/Reviews/U-Net/UNet.ipynb)|
 |[DeconvNet](https://arxiv.org/abs/1505.04366), ICCV 2015|||
-|[SegNet](https://arxiv.org/abs/1511.00561), TPAMI 2017|||
+|[SegNet](https://arxiv.org/abs/1511.00561), TPAMI 2017||[IMPLEMENTATION](https://github.com/hahajjjun/YBIGTA-Segmentation/blob/master/Reviews/SegNet/SegNet.ipynb)|
 |MultiResUNet|||
 |V-Net|||
 |DETR|||
