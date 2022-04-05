@@ -42,6 +42,8 @@ V-Net does not use ReLU, which may cause [Dying ReLU](https://brunch.co.kr/@kdh7
 <img src="https://github.com/hahajjjun/YBIGTA-Segmentation/blob/0976b78828b9e31917a06eacc9ad66d60a8d351c/Reviews/V-Net/Assets/Dice.png" width=50%>
 </p>
 
+## Implementation
+
 ```python
 class VNet(nn.Module):
     # the number of convolutions in each layer corresponds
