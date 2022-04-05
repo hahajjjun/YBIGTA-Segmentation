@@ -32,8 +32,8 @@ Most unofficial implementations employ batch normalization for performance
 
 V-Net does not use ReLU, which may cause [Dying ReLU](https://brunch.co.kr/@kdh7575070/27) problem.
 
-<p align="center>
-<img src="https://gaussian37.github.io/assets/img/dl/concept/prelu/prelu.png"></img>
+<p align="center">
+<img src="https://gaussian37.github.io/assets/img/dl/concept/prelu/prelu.png">
 </p>
 
 5. Dice loss layer
