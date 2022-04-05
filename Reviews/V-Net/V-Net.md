@@ -91,7 +91,12 @@ class ContBatchNorm3d(nn.modules.batchnorm._BatchNorm):
             input, self.running_mean, self.running_var, self.weight, self.bias,
             True, self.momentum, self.eps)
 
-
+def ELUCons(elu, nchan):
+    if elu:
+        return nn.ELU(inplace=True)
+    else:
+        return nn.PReLU(nchan)
+        
 class LUConv(nn.Module):
     def __init__(self, nchan, elu):
         super(LUConv, self).__init__()
