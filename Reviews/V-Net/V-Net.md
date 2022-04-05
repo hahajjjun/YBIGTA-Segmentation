@@ -81,7 +81,7 @@ class VNet(nn.Module):
 class ContBatchNorm3d(nn.modules.batchnorm._BatchNorm):
     def _check_input_dim(self, input):
         if input.dim() != 5:
-            raise ValueError('expected 5D input (got {}D input)'
+            raise ValueError('expected 5D input (got {}D input)' # (Batch, H, W, L, C)
                              .format(input.dim()))
         super(ContBatchNorm3d, self)._check_input_dim(input)
 
