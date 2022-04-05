@@ -3,7 +3,12 @@ This Repository includes paper reviews and code snippets for image segmentation.
 <img src = "https://user-images.githubusercontent.com/75057952/157037611-c596647a-85d4-42f6-a218-bb4ed2dc2e99.png" width = "300dp"></img> <br/>
 
 ---
-Lists and available links of papers are presented below.
+Lists of our reviews & available links of papers are presented below.
+|Special Topics|Review|
+|:-:|:-:|
+|Vision Transformer|REVIEW|
+|Visual Attention|REVIEW|
+
 |Papers|Review|
 |:-:|:-:|
 |[FCN](https://arxiv.org/abs/1411.4038), CVPR 2015|[REVIEW](https://github.com/hahajjjun/YBIGTA-Segmentation/tree/master/Reviews/FCN)|
