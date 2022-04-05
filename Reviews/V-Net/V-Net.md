@@ -198,3 +198,19 @@ class OutputTransition(nn.Module):
         return out
 ```
                                                                                        
+## Training
+
+1. Only two images per batch
+
+GTX 1080 에다가 48시간 돌렸다고 합니다. 데이터는 압축하고 240메가정도.
+
+2. Data Augmentation
+
+- Dense deformation field through 2x2x2 grid of control points and B-spline interpolation
+
+<p align="center">
+<img src="https://github.com/deepmind/multidim-image-augmentation/raw/master/doc/figs/elastic3.png">
+</p>
+
+- Vary intensity distribution by using histogram matching
+- Performed "on-the-fly"
