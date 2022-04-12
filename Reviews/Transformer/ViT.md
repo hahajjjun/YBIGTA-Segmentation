@@ -25,13 +25,17 @@ ViT 는 상대적으로 intuctive bias가 부족.
 
 ### Hybrid Architecture
 
-뭐하러 
+Resnet놔두고 왜 Image patch를 사용? -> Input을 CNN 의 feature map 으로 대체
+
+모델이 작을 때 유효한 성능 개선을 보이지만, 큰 모델은 별 차이가 없음.
 
 ## Architecture
 
 <img src="./Assets/vit.gif" width="500px"></img>
 
 Let's go patch by patch to get global attention.
+
+<img src="./Assets/overview.png" width="700px"></img>
 
 Reshape HxWxC -> Nx(P^2xC), where H*W=P^2*N
 
@@ -49,6 +53,28 @@ Layer Normalization을 사용하며, multi-head attention 전에 사용
 
 MLP의 활성화 함수로 ReLU 대신에 GELU를 사용함
 
+## Experiment
+
+ViT-L/16: Large Model, input patch size 16x16
+
+Smaller patch size requires greater computational power
+
+### Pretraining dataset and performance
+
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fdfwf7C%2FbtqK2ZofWSA%2FoTLHRvpFNv7IH4nyLMkbsK%2Fimg.png" width="600px"></img>
+
+데이터의 규모가 클 수록 무거운 모델이 빛을 발한다
+
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FYvGd0%2FbtqKXK68sYY%2FfTPjzSQ97h5DzQCfmm4WWK%2Fimg.png" width="600px"></img>
+
+마찬가지로 90M 이 넘어갈 때 CNN approach 보다 좋은 성능을 낸다. CNN의 장점인 "locality kernel" 이 데이터의 수가 많아지면 무의미해짐을 보여준다.
+
+### Computational cost and performance
+
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcmpnHT%2FbtqKZnKvmcp%2F8g2wBT8md9J6DVds2S4Kk0%2Fimg.jpg" width="650px"></img>
+
+- ViT가 비용대비 성능이 좋음 (Convolution 연산보다 Transformer 연산이 낮은 computational cost를 가진 효과)
+- 한정된 비용에선 Hybrid, 자원이 허락한다면 ViT를 사용하는것이 권장됨
 
 ## Implementation
 
