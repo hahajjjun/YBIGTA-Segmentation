@@ -14,7 +14,7 @@ Excellent accuracies in larger datasets
 
 ## Background
 
-Inductive Bias
+### Inductive Bias
 
 "어떤 작업에 대한 가정이 있으면 더 수월해짐"
 
@@ -23,11 +23,32 @@ RNN - sequential
 
 ViT 는 상대적으로 intuctive bias가 부족.
 
+### Hybrid Architecture
+
+뭐하러 
+
 ## Architecture
 
 <img src="./Assets/vit.gif" width="500px"></img>
 
+Let's go patch by patch to get global attention.
+
 Reshape HxWxC -> Nx(P^2xC), where H*W=P^2*N
+
+## Difference?
+
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FqZTWm%2FbtqKZoichG1%2FXBVCno5bYZJcv3MeGBYedk%2Fimg.png" width="700px"></img>
+
+1. Pre-Norm
+
+Layer Normalization을 사용하며, multi-head attention 전에 사용
+
+2. GELU
+
+<img src="https://i.stack.imgur.com/tJI3j.png" width="500px"></img>
+
+MLP의 활성화 함수로 ReLU 대신에 GELU를 사용함
+
 
 ## Implementation
 
