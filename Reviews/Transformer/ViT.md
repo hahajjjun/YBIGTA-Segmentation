@@ -25,7 +25,7 @@ ViT 는 상대적으로 intuctive bias가 부족.
 
 ## Architecture
 
-<img src="/Assets/vit.gif" width="500px"></img>
+<img src="./Assets/vit.gif" width="500px"></img>
 
 Reshape HxWxC -> Nx(P^2xC), where H*W=P^2*N
 
