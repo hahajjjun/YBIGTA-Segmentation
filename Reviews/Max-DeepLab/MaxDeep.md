@@ -48,3 +48,6 @@ Box-based methods fail due to low confidence, while box-free methods fail due to
 
 ## MaX Deeplab
 
+<p align="center">
+<img src="https://github.com/hahajjjun/YBIGTA-Segmentation/blob/6b606900ce561c41763b8fcf30ebcfe85687067e/Reviews/Max-DeepLab/Assets/equation2.png" width="500px">
+</p>
