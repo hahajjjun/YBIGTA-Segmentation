@@ -72,7 +72,7 @@ In specific, our goal is to maximize this PQ-style objective. Notice that **both
 <img src="https://github.com/hahajjjun/YBIGTA-Segmentation/blob/e24bdd19e86a91d04edb4e89873f378ce11fa5a6/Reviews/Max-DeepLab/Assets/equation10.png" width="300px">
 </p>
 
-Notice that the product rule has been used to calculate the loss.
+Notice that the product rule has been used to calculate the loss. The **log p** term is common in cross-entropy terms and scales great for optimization.
 
 <p align="center">
 <img src="https://github.com/hahajjjun/YBIGTA-Segmentation/blob/3bc3bf9922dd915f6c4ccd68be21142d1a0d1c61/Reviews/Max-DeepLab/Assets/equation11.png" width="300px">
