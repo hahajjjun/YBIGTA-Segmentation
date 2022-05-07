@@ -74,6 +74,12 @@ In specific, our goal is to maximize this PQ-style objective. Notice that **both
 
 Notice that the product rule has been used to calculate the loss. The **log p** term is common in cross-entropy terms and scales great for optimization.
 
+**Dice loss recap**
+
+<p align="center">
+<img src="https://i.stack.imgur.com/OsH4y.png" width="500px">
+</p>
+
 <p align="center">
 <img src="https://github.com/hahajjjun/YBIGTA-Segmentation/blob/3bc3bf9922dd915f6c4ccd68be21142d1a0d1c61/Reviews/Max-DeepLab/Assets/equation11.png" width="300px">
 </p>
