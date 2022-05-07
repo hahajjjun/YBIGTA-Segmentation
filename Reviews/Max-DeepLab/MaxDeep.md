@@ -38,7 +38,7 @@ First perform semantic segmentation, then and group the instance pixels. The gro
 Worth mentioning: Axial-Deeplab equipped fully axial attention-backbone.
 
 <p align="center">
-<img src="">
+<img src="Reviews/Max-DeepLab/Assets/previous.png">
 </p>
 
 Box-based methods fail due to low confidence, while box-free methods fail due to complexities such as overlapping center.
