@@ -107,7 +107,7 @@ Notice the four connections: M2P, M2M, P2M, P2P
 P2P: Axial attention, adopted from Axial-Deeplab. Notice two attention layers in the bottleneck.
 
 <p align="center">
-<img src="https://github.com/hahajjjun/YBIGTA-Segmentation/blob/4f5839ebdaaa2c624c491e02da407fac35a6a4b1/Reviews/Max-DeepLab/Assets/axial.png" height="100px">
+<img src="https://github.com/hahajjjun/YBIGTA-Segmentation/blob/4f5839ebdaaa2c624c491e02da407fac35a6a4b1/Reviews/Max-DeepLab/Assets/axial.png" height="200px">
 </p>
 
 P2M, M2P, M2M are performed with softmax function applied over the entire N prediction set. The specific components involved are displayed in the figure
