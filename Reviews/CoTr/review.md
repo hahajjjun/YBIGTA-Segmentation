@@ -39,7 +39,7 @@ Multi-Scale DeforMable Self Attention (MS-DMSA)
 
   - Here, # represents {D, H, W}, and v = (1/10000)^(2k/(C/3))
   - This is the input for De-Trans encoder
-  - (https://ratsgo.github.io/nlpbook/docs/language_model/tr_self_attention/)[Self Attention]
+  - [https://ratsgo.github.io/nlpbook/docs/language_model/tr_self_attention/](Self Attention)
 - 
 
 
