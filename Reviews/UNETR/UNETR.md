@@ -9,6 +9,10 @@ UNETR: 9 Oct 2021
 ## Architecture
 
 <div align="center">
-<img src="https://images.velog.io/images/khp3927/post/1484adf2-ffe1-443b-bcf6-694e186bde24/Untitled%20(12).png">
+<img src="https://images.velog.io/images/khp3927/post/1484adf2-ffe1-443b-bcf6-694e186bde24/Untitled%20(12).png" width="700px">
   <p>어? 어디서 본것같다.</p>
 </div>
+
+<img src="./Assets/vit.gif" width="500px"></img>
+
+ViT
