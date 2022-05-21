@@ -8,7 +8,7 @@ UNETR: 9 Oct 2021
 
 ## Architecture
 
-<p align="center">
+<div align="center">
 <img src="https://images.velog.io/images/khp3927/post/1484adf2-ffe1-443b-bcf6-694e186bde24/Untitled%20(12).png">
-어? 어디서 본것같다.
-</p>
+  <p>어? 어디서 본것같다.</p>
+</div>
