@@ -37,13 +37,26 @@ Multi-head Self Attention, Multi Layer Perceptron은 아래와 같이 정의된�
 
 ## Loss function
 
-<img src="./assets/loss.png" width="500px">
+<img src="./Assets/loss.png" width="500px">
+
+1 - soft_dice_loss* - cross_entropy_loss
+
+- I : Voxels
+- J : Classes
+- Y : Probability (prediction)
+- G : Ground Truth
+
+* soft in the sense that probabilities are directly used to compute the loss
 
 ## Model comparison
 
 <div align="center">
 <img src="./assets/comparison.png" width="800px">
 </div>
+
+## Dataset
+
+[BTCV Challenge Dataset](https://www.synapse.org/#!Synapse:syn3193805/wiki/217752)
 
 ## Implementation Details
 - Batch size: 6
