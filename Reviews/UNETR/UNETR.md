@@ -13,6 +13,6 @@ UNETR: 9 Oct 2021
   <p>어? 어디서 본것같다.</p>
 </div>
 
-<img src="./Assets/vit.gif" width="500px"></img>
+<img src="../Transformer/Assets/vit.gif" width="500px"></img>
 
 ViT
