@@ -21,11 +21,11 @@ Lists of our reviews & available links of papers are presented below.
 |[SegNet](https://arxiv.org/abs/1511.00561), TPAMI 2017|[IMPLEMENTATION](https://github.com/hahajjjun/YBIGTA-Segmentation/blob/master/Reviews/SegNet/SegNet.ipynb)|
 |[MultiResUNet](https://arxiv.org/abs/1902.04049)|[REVIEW](https://github.com/hahajjjun/YBIGTA-Segmentation/blob/master/Reviews/MultiResUNet/MultiResUNet.ipynb)|
 |[V-Net](https://arxiv.org/abs/1606.04797)|[REVIEW](https://github.com/hahajjjun/YBIGTA-Segmentation/blob/master/Reviews/V-Net/V-Net.md)|
-|DETR||
-|MaX-DeepLab||
-|TransFuse||
-|CoTr||
+|DETR|[REVIEW](https://github.com/hahajjjun/YBIGTA-Segmentation/tree/master/Reviews/DETR)|
+|MaX-DeepLab|[REVIEW](https://github.com/hahajjjun/YBIGTA-Segmentation/blob/master/Reviews/Max-DeepLab/README.md)|
+|TransFuse|[REVIEW](https://github.com/hahajjjun/YBIGTA-Segmentation/tree/master/Reviews/TransFuse)|
+|CoTr|[REVIEW](https://github.com/hahajjjun/YBIGTA-Segmentation/tree/master/Reviews/CoTr)|
 |U-Net Transformer||
-|UNETR||
+|UNETR|[REVIEW](https://github.com/hahajjjun/YBIGTA-Segmentation/tree/master/Reviews/UNETR)|
 |Swin-UNet||
 |TransUNet||
