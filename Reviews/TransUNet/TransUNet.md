@@ -7,7 +7,7 @@ Naively using the transformer does not yield satisfactory result.
 
 But, we know CNN architectures are an expert in extracting low-level features.
 
--> **Hybrid CNN-Transformer** for 일석이조. CNN 에서 추출한 feature을 
+-> **Hybrid CNN-Transformer** for 일석이조. CNN 에서 추출한 feature들은 skip-connection 을 써서 뽕뽑아먹자.
 
 ## Architecture
 
