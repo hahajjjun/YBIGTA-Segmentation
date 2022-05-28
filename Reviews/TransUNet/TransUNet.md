@@ -46,6 +46,11 @@ Upsampler:
 
 Dataset: 30 abdominal CT scans in the MICCAI 2015 Multi-Atlas Abdomen Labeling Challenge, with 3779 axial contrast-enhanced abdominal clinical CT images in total.
 
+<div align="center">
+<img src="./Assets/table1.png" width="800px"></img>
+  <p>Table 1. Comparison on Synapse multi-organ CT dataset</p>
+</div>
+
 1. Number of Skip connections
 
 0: None
@@ -53,7 +58,7 @@ Dataset: 30 abdominal CT scans in the MICCAI 2015 Multi-Atlas Abdomen Labeling C
 3: all 1/2, 1/4, 1/8
 
 <div align="center">
-<img src="./Assets/skip.png" width="500px"></img>
+<img src="./Assets/skip.png" width="800px"></img>
   <p>Fig 2. ablation study on # of skip-connections</p>
 </div>
 
@@ -89,10 +94,22 @@ Average DSC 77.48 -> 78.52 (1.04% increase)
 - batch size=24
 - Single RTX2080Ti GPU
 
+6. Qualitative comparison
+
+<div align="center">
+<img src="./Assets/qualitative.png" width="900px"></img>
+  <p>Fig 3. Qualitative comparison</p>
+</div>
+
 ## Limitations
 
 But... 어차피 CNN의 결과물을 transformer에 넣으면 이미 spatial information은 소실되었는데..?
 
 CoTr에서 해결: establish multiple connections between CNN and Transformer
+
+<div align="center">
+<img src="./Assets/cotr.png" width="400px"></img>
+  <p>Fig 2. ablation study on # of skip-connections</p>
+</div>
 
 Deformable Self-Attention을 적용하여 연산량을 크게 늘리지 않는 선에서 multi-scale and high-resolution feature maps 의 활용을 극대화함.
