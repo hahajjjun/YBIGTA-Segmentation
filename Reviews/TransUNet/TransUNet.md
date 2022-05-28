@@ -26,7 +26,7 @@ But, we know CNN architectures are an expert in extracting low-level features.
   <p>지긋지긋한 ViT...</p>
 </div>
 
-마지막 feature 을 patch로 나눠서 flattenign 
+마지막 feature 을 patch로 나눠서 spatial encoding 을 넣어준 뒤, ViT의 Transformer Layer을 12번 반복한다.
 
 ### Decoder
 
@@ -38,9 +38,14 @@ Upsampler:
   - Upsampling operator x 2
   - 3x3 Convolution layer
   - ReLU layer
+  - Skip connection 은 concatenation
 
 총 4번의 upsampling을 통해 (512, H/16, W/16) -> (16, H, W) 로 recover
 
 ## Limitations
 
-Self-Attention 의 ㄴ
+But... 어차피 CNN의 결과물을 transformer에 넣으면 이미 spatial information은 소실되었는데..?
+
+CoTr에서 해결: establish multiple connections between CNN and Transformer
+
+Deformable Self-Attention을 적용하여 연산량을 크게 늘리지 
