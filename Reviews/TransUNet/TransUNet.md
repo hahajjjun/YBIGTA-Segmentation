@@ -53,7 +53,7 @@ Dataset: 30 abdominal CT scans in the MICCAI 2015 Multi-Atlas Abdomen Labeling C
 3: all 1/2, 1/4, 1/8
 
 <div align="center">
-<img src="./Assets/skip" width="500px"></img>
+<img src="./Assets/skip.png" width="500px"></img>
   <p>Fig 2. ablation study on # of skip-connections</p>
 </div>
 
