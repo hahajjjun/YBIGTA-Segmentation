@@ -42,10 +42,57 @@ Upsampler:
 
 총 4번의 upsampling을 통해 (512, H/16, W/16) -> (16, H, W) 로 recover
 
+## Experiments
+
+Dataset: 30 abdominal CT scans in the MICCAI 2015 Multi-Atlas Abdomen Labeling Challenge, with 3779 axial contrast-enhanced abdominal clinical CT images in total.
+
+1. Number of Skip connections
+
+0: None
+1: only at 1/4 to 1/4
+3: all 1/2, 1/4, 1/8
+
+<div align="center">
+<img src="./Assets/skip" width="500px"></img>
+  <p>Fig 2. ablation study on # of skip-connections</p>
+</div>
+
+*Note. performance increase is more evident on smaller organs: aorta (대동맥), gallbladder (담낭), ...*
+
+2. Input Resolution
+
+224x224 -> 512x512 로 올렸을 때 6.88% 향상.
+
+연산량이 너무 많아져서 이 논문에선 default 224x224로 실험.
+
+3. Patch size
+
+Smaller patch size가 더 좋은 성능 (ViT때도 그랬듯이..)
+
+default: 16
+
+4. Model size
+
+Base vs Large
+
+- Hidden size: 12 / 24
+- number of layers: 768 / 1024
+- MLP size: 3072 / 4096
+- Number of heads: 12 / 16
+
+Average DSC 77.48 -> 78.52 (1.04% increase)
+
+5. Implementation details
+
+- SGD Optimizer
+- lr=0.01, momentum=0.9, weight decay=1e-4
+- batch size=24
+- Single RTX2080Ti GPU
+
 ## Limitations
 
 But... 어차피 CNN의 결과물을 transformer에 넣으면 이미 spatial information은 소실되었는데..?
 
 CoTr에서 해결: establish multiple connections between CNN and Transformer
 
-Deformable Self-Attention을 적용하여 연산량을 크게 늘리지 
+Deformable Self-Attention을 적용하여 연산량을 크게 늘리지 않는 선에서 multi-scale and high-resolution feature maps 의 활용을 극대화함.
